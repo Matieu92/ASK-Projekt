@@ -8,6 +8,76 @@ void gotoxy(short x, short y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 } 
 
+void bajtowa(){
+    char ch;
+    do {
+        system("cls");
+        gotoxy(45, 10); printf(" ======== Typ danych ========");
+        gotoxy(45, 11); printf(" ");
+        gotoxy(45, 12); printf(" 1. INT");
+        gotoxy(45, 13); printf(" 2. FLOAT");
+        gotoxy(45, 14); printf(" 3. DOUBLE");
+        gotoxy(45, 15); printf(" ");
+        gotoxy(45, 16); printf(" 4. Powrot");
+        gotoxy(45, 17); printf(" ============================");
+        gotoxy(45, 18); printf(" Wybierz opcje: ");
+        fflush(stdin);
+        do {
+            ch = getch();
+        } while (ch != '1' && ch != '2' && ch != '3' && ch != '4' && ch != 27);
+        
+        switch (ch) {
+            case '1':
+            break;
+            case '2':
+            break;
+            case '3':
+            break;
+            case '4':
+            return;
+            break;
+            case 27:
+            return;
+            break;
+        }
+    } while (1);
+}
+
+void binarna(){
+    char ch;
+    do {
+        system("cls");
+        gotoxy(45, 10); printf(" ======== Typ danych ========");
+        gotoxy(45, 11); printf(" ");
+        gotoxy(45, 12); printf(" 1. INT");
+        gotoxy(45, 13); printf(" 2. FLOAT");
+        gotoxy(45, 14); printf(" 3. DOUBLE");
+        gotoxy(45, 15); printf(" ");
+        gotoxy(45, 16); printf(" 4. Powrot");
+        gotoxy(45, 17); printf(" ============================");
+        gotoxy(45, 18); printf(" Wybierz opcje: ");
+        fflush(stdin);
+        do {
+            ch = getch();
+        } while (ch != '1' && ch != '2' && ch != '3' && ch != '4' && ch != 27);
+        
+        switch (ch) {
+            case '1':
+            break;
+            case '2':
+            break;
+            case '3':
+            break;
+            case '4':
+            return;
+            break;
+            case 27:
+            return;
+            break;
+        }
+    } while (1);
+}
+
 void menu() {
     char ch;
     do {
