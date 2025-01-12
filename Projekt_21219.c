@@ -41,6 +41,34 @@ void intToHex() {
     getch();
 }
 
+void floatToHex() {
+    system("cls");
+    float num;
+    printf("Podaj liczbe: "); scanf("%f", &num);
+    float num2 = num;
+    system("cls");
+    unsigned char *ptr = (unsigned char *)&num;
+    printf("Liczba float %f w postaci bajtowej wynosi: ", num2);
+    for (int i = sizeof(float) - 1; i >= 0; i--) {
+        printf("%02X ", ptr[i]);
+    }
+    getch();
+}
+
+void doubleToHex() {
+    system("cls");
+    double num;
+    printf("Podaj liczbe: "); scanf("%lf", &num);
+    double num2 = num;
+    system("cls");
+    unsigned char *ptr = (unsigned char *)&num;
+    printf("Liczba double %lf w postaci bajtowej wynosi: ", num2);
+    for (int i = sizeof(double) - 1; i >= 0; i--) {
+        printf("%02X ", ptr[i]);
+    }
+    getch();
+}
+
 void bajtowa(){
     char ch;
     system("cls");
@@ -63,8 +91,10 @@ void bajtowa(){
         intToHex();
         break;
         case '2':
+        floatToHex();
         break;
         case '3':
+        doubleToHex();
         break;
         case '4':
         return;
