@@ -11,8 +11,13 @@ void gotoxy(short x, short y){
 
 void intToHex() {
     system("cls");
-    int num;
-    printf("Podaj liczbe: "); scanf("%d", &num);
+    int num, k;
+    do {
+        printf("Podaj liczbe: ");
+        k = scanf("%d", &num);
+        while ((getchar()) != '\n');    
+    } while (k == 0);
+
     int num2 = num;
     system("cls");
 
@@ -44,7 +49,13 @@ void intToHex() {
 void floatToHex() {
     system("cls");
     float num;
-    printf("Podaj liczbe: "); scanf("%f", &num);
+    int k;
+    do {
+        printf("Podaj liczbe: ");
+        k = scanf("%f", &num);
+        while ((getchar()) != '\n');    
+    } while (k == 0);
+
     float num2 = num;
     system("cls");
     unsigned char *ptr = (unsigned char *)&num;
@@ -58,7 +69,13 @@ void floatToHex() {
 void doubleToHex() {
     system("cls");
     double num;
-    printf("Podaj liczbe: "); scanf("%lf", &num);
+    int k;
+    do {
+        printf("Podaj liczbe: ");
+        k = scanf("%lf", &num);
+        while ((getchar()) != '\n');    
+    } while (k == 0);
+    
     double num2 = num;
     system("cls");
     unsigned char *ptr = (unsigned char *)&num;
@@ -107,8 +124,13 @@ void bajtowa(){
 
 void intToBinary() {
     system("cls");
-    int num;
-    printf("Podaj liczbe: "); scanf("%d", &num);
+    int num, k;
+    do {
+        printf("Podaj liczbe: ");
+        k = scanf("%d", &num);
+        while ((getchar()) != '\n');    
+    } while (k == 0);
+
     int num2 = num;
     system("cls");
 
@@ -125,7 +147,13 @@ void intToBinary() {
 void floatToBinary() {
     system("cls");
     float num;
-    printf("Podaj liczbe: "); scanf("%f", &num);
+    int k;
+    do {
+        printf("Podaj liczbe: ");
+        k = scanf("%f", &num);
+        while ((getchar()) != '\n');    
+    } while (k == 0);
+
     float integer2;
     float fractional;
     fractional = modff(num, &integer2);
@@ -166,7 +194,13 @@ void floatToBinary() {
 void doubleToBinary() {
     system("cls");
     double num;
-    printf("Podaj liczbe: "); scanf("%lf", &num);
+    int k;
+    do {
+        printf("Podaj liczbe: ");
+        k = scanf("%lf", &num);
+        while ((getchar()) != '\n');    
+    } while (k == 0);
+
     double integer2;
     double fractional;
     fractional = modf(num, &integer2);
