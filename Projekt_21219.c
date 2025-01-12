@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <windows.h>
 
 void gotoxy(short x, short y){
     COORD pos = {x, y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-} 
+}
 
 void bajtowa(){
     char ch;
@@ -57,6 +58,42 @@ void intToBinary() {
     getch();
 }
 
+void doubleToBinary() {
+    system("cls");
+    double num;
+    printf("Podaj liczbe: "); scanf("%lf", &num);
+    double integer2;
+    double fractional;
+    fractional = modf(num, &integer2);
+    int integer = (int)integer2;
+    system("cls");
+
+    printf("Liczba %lf w systemie dwojkowym wynosi: ", num);
+
+    for (int i = 31; i >= 0; i--) {
+        if (integer >> i) printf("%d", (integer >> i) & 1); 
+    }
+
+    printf(" . ");
+
+    double power = 0.5;
+    while (fractional > 0) { 
+        if (fractional >= power) {
+            printf("1");
+            fractional -= power;
+        } else {
+            printf("0");
+        }
+        power /= 2;
+    }
+
+    if (fractional == 0) {
+        printf("0");
+    }
+    getch();
+}
+
+
 void binarna(){
     char ch;
     system("cls");
@@ -81,6 +118,7 @@ void binarna(){
         case '2':
         break;
         case '3':
+        doubleToBinary();
         break;
         case '4':
         return;
