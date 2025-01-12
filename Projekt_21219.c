@@ -9,39 +9,70 @@ void gotoxy(short x, short y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+void intToHex() {
+    system("cls");
+    int num;
+    printf("Podaj liczbe: "); scanf("%d", &num);
+    int num2 = num;
+    system("cls");
+
+    char hex[9];
+    int i = 0;
+
+    while (num != 0) {
+        int remainder = num % 16;
+        
+        if (remainder < 10) {
+            hex[i] = remainder + '0';
+        } 
+        else {
+            hex[i] = remainder - 10 + 'A';
+        }
+        num = num / 16;
+        i++;
+    }
+    printf("Liczba calkowita %d w postaci bajtowej wynosi: ", num2);
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", hex[j]);
+    }
+    if(num2 == 0){
+        printf("0");
+    }
+    getch();
+}
+
 void bajtowa(){
     char ch;
+    system("cls");
+    gotoxy(45, 10); printf(" ======== Typ danych ========");
+    gotoxy(45, 11); printf(" ");
+    gotoxy(45, 12); printf(" 1. INT");
+    gotoxy(45, 13); printf(" 2. FLOAT");
+    gotoxy(45, 14); printf(" 3. DOUBLE");
+    gotoxy(45, 15); printf(" ");
+    gotoxy(45, 16); printf(" 4. Powrot");
+    gotoxy(45, 17); printf(" ============================");
+    gotoxy(45, 18); printf(" Wybierz opcje: ");
+    fflush(stdin);
     do {
-        system("cls");
-        gotoxy(45, 10); printf(" ======== Typ danych ========");
-        gotoxy(45, 11); printf(" ");
-        gotoxy(45, 12); printf(" 1. INT");
-        gotoxy(45, 13); printf(" 2. FLOAT");
-        gotoxy(45, 14); printf(" 3. DOUBLE");
-        gotoxy(45, 15); printf(" ");
-        gotoxy(45, 16); printf(" 4. Powrot");
-        gotoxy(45, 17); printf(" ============================");
-        gotoxy(45, 18); printf(" Wybierz opcje: ");
-        fflush(stdin);
-        do {
-            ch = getch();
-        } while (ch != '1' && ch != '2' && ch != '3' && ch != '4' && ch != 27);
+        ch = getch();
+    } while (ch != '1' && ch != '2' && ch != '3' && ch != '4' && ch != 27);
         
-        switch (ch) {
-            case '1':
-            break;
-            case '2':
-            break;
-            case '3':
-            break;
-            case '4':
-            return;
-            break;
-            case 27:
-            return;
-            break;
-        }
-    } while (1);
+    switch (ch) {
+        case '1':
+        intToHex();
+        break;
+        case '2':
+        break;
+        case '3':
+        break;
+        case '4':
+        return;
+        break;
+        case 27:
+        return;
+        break;
+    }
 }
 
 void intToBinary() {
