@@ -51,9 +51,53 @@ void intToBinary() {
     int num2 = num;
     system("cls");
 
-    printf("Liczba %d w systemie dwojkowym wynosi: ", num2);
+    printf("Liczba calkowita %d w systemie dwojkowym wynosi: ", num2);
     for (int i = 31; i >= 0; i--) {
         if (num >> i) printf("%d", (num >> i) & 1); 
+    }
+    if(num == 0){
+        printf("0");
+    }
+    getch();
+}
+
+void floatToBinary() {
+    system("cls");
+    float num;
+    printf("Podaj liczbe: "); scanf("%f", &num);
+    float integer2;
+    float fractional;
+    fractional = modff(num, &integer2);
+    int integer = (int)integer2;
+    system("cls");
+
+    printf("Liczba float %lf w systemie dwojkowym wynosi: ", num);
+
+    for (int i = 31; i >= 0; i--) {
+        if (integer >> i) printf("%d", (integer >> i) & 1); 
+    }
+    if(integer == 0){
+        printf("0");
+    }
+
+    printf(".");
+
+    int counter = 0;
+    double power = 0.5f;
+    while (fractional > 0 && counter < 23) { 
+        if (fractional >= power) {
+            printf("1");
+            fractional -= power;
+
+        } else {
+            printf("0");
+        }
+        power /= 2;
+        counter++;
+    }
+
+    if (fractional == 0) {
+        printf("0");
     }
     getch();
 }
@@ -68,23 +112,29 @@ void doubleToBinary() {
     int integer = (int)integer2;
     system("cls");
 
-    printf("Liczba %lf w systemie dwojkowym wynosi: ", num);
+    printf("Liczba double %lf w systemie dwojkowym wynosi: ", num);
 
     for (int i = 31; i >= 0; i--) {
         if (integer >> i) printf("%d", (integer >> i) & 1); 
     }
+    if(integer == 0){
+        printf("0");
+    }
 
-    printf(" . ");
+    printf(".");
 
+    int counter = 0;
     double power = 0.5;
-    while (fractional > 0) { 
+    while (fractional > 0 && counter < 32) { 
         if (fractional >= power) {
             printf("1");
             fractional -= power;
+
         } else {
             printf("0");
         }
         power /= 2;
+        counter++;
     }
 
     if (fractional == 0) {
@@ -116,6 +166,7 @@ void binarna(){
         intToBinary();
         break;
         case '2':
+        floatToBinary();
         break;
         case '3':
         doubleToBinary();
