@@ -275,6 +275,104 @@ void binarna(){
     }
 }
 
+void instrukcjaKonwersjiDecNaFloat() {
+    system("cls");
+    printf("KONWERSJA LICZBY DZIESIETNEJ NA FORMAT FLOAT WEDLUG IEEE 754 \n");
+    printf("----------------------------------------------------------- \n");
+
+    printf("\n1. PODZIAL LICZBY NA CZESC CALKOWITA I ULAMKOWA:\n");
+    printf("   Na poczatku nalezy oddzielic czesc calkowita od tej ulamkowej.");
+    printf("\n   Np. dla 14.125: 14 i 0.125 \n\n");
+
+    printf("2. KONWERSJA CZESCI CALKOWITEJ NA BINARNA:\n");
+    printf("   Dziel czesc calkowita przez 2 i zapisuj reszty.\n");
+    printf("   Odczyt reszty od dolu do gory.\n");
+    printf("   Przyklad dla 14:\n");
+    printf("   14 / 2 = 7, reszty 0\n");
+    printf("   7 / 2 = 3, reszty 1\n");
+    printf("   3 / 2 = 1, reszty 1\n");
+    printf("   1 / 2 = 0, reszty 1\n");
+    printf("   14(10) = 1110(2)\n\n");
+
+    printf("3. KONWERSJA CZESCI ULAMKOWEJ NA BINARNA:\n");
+    printf("   Nalezy mnozyc czesc ulamkowa przez 2.\n");
+    printf("   Jezeli wynik wychodzi >= 1, zapisz 1 i odejmij 1 od wyniku.\n");
+    printf("   Jezeli wynik < 1, zapisz 0 i pomnoz wynik przez 2 dopoki >= 1.\n");
+    printf("   Powtarzaj mnozenie i odejmowanie, dopoki nie otrzymasz liczby 0\n");  
+    printf("   Wynik zapisujemy od gory do dolu.\n");   
+    printf("   Przyklad dla 0.125:\n");
+    printf("   0.125 * 2 = 0.250 (0)\n");
+    printf("   0.250 * 2 = 0.5 (0)\n");
+    printf("   0.5 * 2 = 1.0 (1), 1.0 - 1 = 0.0\n");
+    printf("   0.125(10) = 0.001(2)\n\n");
+    printf("Nacisnij dowolny klawisz, aby przejsc dalej.");
+    getch();
+
+    system("cls");
+    printf("KONWERSJA LICZBY DZIESIETNEJ NA FORMAT FLOAT WEDLUG IEEE 754 \n");
+    printf("----------------------------------------------------------- \n");
+
+    printf("\n4. POLACZENIE CZESCI CALKOWITEJ I ULAMKOWEJ:\n");
+    printf("   Teraz laczymy wyniki obu konwersji: 1110.001(2)\n\n");
+
+    printf("5. NORMALIZACJA:\n");
+    printf("   Przesuwamy przecinek, aby stal po tylko jednej cyfrze.\n");
+    printf("   Liczba przesuniec to nasz wykladnik.\n");
+    printf("   Zapisujemy w formie: liczba * 2 do potegi wykladnik.\n");   
+    printf("   1110.001(2) = 1.110001(2) * 2^3\n\n");
+
+    printf("6. OBLICZENIE CECHY (WYKLADNIK Z PRZESUNIECIEM):\n"); 
+    printf("   Dodaj liczbe 127 (przesuniecie - bias) do wykladnika.\n");
+    printf("   Po dodaniu otrzymujemy exponent, nalezy przeliczyc na bin jak wyzej.\n");
+    printf("   3 + 127 = 130 = 10000010(2)\n\n");
+
+    printf("7. ZAPIS W FORMACIE IEEE 754 (POJEDYNCZA PRECYZJA - FLOAT):\n");
+    printf("   Liczba w tym formacie wyglada tak: \n");    
+    printf("   Bit znaku (1 bit): 0 (dla dodatnich), 1 (dla ujemnych)\n");
+    printf("   Cecha (8 bitow): Wykladnik z przesunieciem\n");
+    printf("   Mantysa (23 bity): Czesc ulamkowa po normalizacji z punktu 5\n");
+    printf("   Dla 14.125:\n");
+    printf("   Znak zgodnie z zasada: 0\n");
+    printf("   Exponent z punktu 6: 10000010\n");
+    printf("   Mantysa: 110001 (przepisane z 6) i reszte uzupelniamy zerami do 23 bitow\n");
+    printf("   Ostateczny zapis: 0 10000010 11000100000000000000000\n\n");
+    getch();
+}
+
+void instrukcjaKonwersjiFloatNaDec() {
+    system("cls");
+    printf("KONWERSJA FORMATU FLOAT NA LICZBE DZIESIETNA WEDLUG IEE 754\n");
+    printf("-----------------------------------------------------------\n");
+
+    printf("Przyklad dla: 0(ZNAK) 10000010(CECHA) 10001100000000000000000(MANTYSA):\n\n");
+    printf("1. ODCZYT BITU ZNAKU:\n");
+    printf("   Pierwszy bit (0 - dodatnia, 1 - ujemna).\n\n");
+
+    printf("2. OBLICZENIE CECHY (WYKLADNIKA Z PRZESUNIECIEM):\n");
+    printf("   Nalezy przeliczyc wykladnik binarny na dziesietny.\n");
+    printf("   Mnoz przez potegi dwojki, tam gdzie cyfra 1. Zacznij od prawej: 2^0 do 2^7.\n");
+    printf("   Dodawaj kolejno uzyskane wartosci.\n");
+    printf("   Exponent: 10000010(2) = 1 * 2^1 + 1 * 2^7 = 130(10)\n");
+    printf("   Odejmij bias (127 dla float).\n");
+    printf("   Wykladnik bez przesuniecia: 130 - 127 = 3\n\n");
+
+    printf("3. ODCZYT MANTYSY:\n");
+    printf("   Dodaj wiodaca jedynke do mantysy. Nie przejmujemy sie koncowymi zerami.\n");
+    printf("   Zgodnie z przykladem: 0.100011 + 1 = 1.100011(2)\n\n");
+
+    printf("4. OBLICZENIE WARTOSCI DZIESIETNEJ:\n");
+    printf("   Pomnoz mantyse przez 2 do potegi wykladnik (przesun przecinek o wartosc wykladnika).\n");
+    printf("   1.100011(2) * 2^3 = 1100.011(2)\n\n");
+
+    printf("5. KONWERSJA BINARNEJ LICZBY Z PRZECINKIEM NA DZIESIETNA:\n");
+    printf("   Czesc calkowita mnoz przez potegi dwojki, tam gdzie cyfra to 1. Zacznij z prawej od 2^0 do 2^7.\n");
+    printf("   Czesc ulamkowa mnoz przez potegi dwojki, zaczynajac z lewej strony od 2^-1.\n");   
+    printf("   Czesc calkowita: 1100(2) = 1 * 2^2 + 1 * 2^3 = 12(10)\n");
+    printf("   Czesc ulamkowa: 0.011(2) = 0 * 2^-1 + 1 * 2^-2 + 1 * 2^-3 = 0 + 0.25 + 0.125 = 0.375(10)\n");
+    printf("   Wynik: 1100.011(2) = 12.375(10)\n");
+    getch();
+}
+
 void menu() {
     char ch;
     do {
@@ -305,8 +403,10 @@ void menu() {
             case '3':
             break;
             case '4':
+            instrukcjaKonwersjiDecNaFloat();
             break;
             case '5':
+            instrukcjaKonwersjiFloatNaDec();
             break;
             case '6':
             exit(0);
