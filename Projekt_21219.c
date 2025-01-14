@@ -275,6 +275,40 @@ void binarna(){
     }
 }
 
+void instrukcjaOdejmowaniaU2() {
+    system("cls");
+    printf("ZASADA:\n");
+    printf("Odejmowanie w U2 to inaczej DODANIE liczby przeciwnej (w reprezentacji U2).\n\n");
+
+    printf("KROKI:\n");
+    printf("1. ZAMIANA LICZBY ODEJMOWANEJ NA U2:\n");
+    printf("   a) Jesli liczba jest DODATNIA:\n");
+    printf("      - Zapisz jej reprezentacje binarna i uzupelnij zerami z lewej strony do wymaganej liczby bitow.\n");
+    printf("   b) Jesli liczba jest UJEMNA:\n");
+    printf("      - Zapisz binarnie jej wartosc bezwzgledna. ZAMIEN bity z 0 na 1, a 1 na 0. Dodaj 1 do wyniku.\n\n");
+
+    printf("2. DODAWANIE BITOW i IGNOROWANIE PRZENIESIENIA:\n");
+    printf("   Nalezy dodac odjemna i odjemnik binarnie (0 + 0 = 0, 0 + 1 = 1, 1 + 1 = 0 z jedynka do przodu).\n");
+    printf("   Jesli wystapi przeniesienie poza bit znaku, to nalezy to zignorowac.\n");
+
+    printf("\nPRZYKLAD 1: 5 - 3\n");
+    printf("   1. Liczba 5: 0101(2), liczba 3: 0011(2)\n");
+    printf("   2. Liczba -3 w U2:\n");
+    printf("      - Liczba 3: 0011(2)\n");
+    printf("      - Zamiana bitow: 1100(2)\n");
+    printf("      - Dodanie 1 do wyniku: 1101(2)\n");
+    printf("   3. Dodawanie:\n");
+    printf("      0101 (5)\n");
+    printf("    + 1101 (-3 w U2)\n");
+    printf("    ------\n");
+    printf("    Zaczynajac od prawej strony:\n");    
+    printf("    1 + 1 = 0 i jeden dalej, nastepnie 0 + 0 + jeden = 1. Trzecia kolumna: 1 + 1 = 0 i jeden dalej,\n");    
+    printf("    nastepnie 0 + 1 + jeden = 0 i jeden dalej. Przepisujemy jedynke ktora przenieslismy\n");   
+    printf("    i zauwazamy ze z 4 bitow zrobilo nam sie 5. Wystapilo przepelnienie.\n\n");   
+    printf("   4. Wynik: 10010 (Ignorujemy przeniesienie) -> 0010(2) = 2(10)");
+    getch();
+}
+
 void instrukcjaKonwersjiDecNaFloat() {
     system("cls");
     printf("KONWERSJA LICZBY DZIESIETNEJ NA FORMAT FLOAT WEDLUG IEEE 754 \n");
@@ -401,6 +435,7 @@ void menu() {
             binarna();
             break;
             case '3':
+            instrukcjaOdejmowaniaU2();
             break;
             case '4':
             instrukcjaKonwersjiDecNaFloat();
