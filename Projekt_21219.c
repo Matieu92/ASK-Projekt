@@ -148,45 +148,40 @@ void floatToBinary() {
     system("cls");
     float num;
     int k;
+
     do {
         printf("Podaj liczbe: ");
         k = scanf("%f", &num);
-        while ((getchar()) != '\n');    
+        while ((getchar()) != '\n');
     } while (k == 0);
-
-    float integer2;
-    float fractional;
-    fractional = modff(num, &integer2);
-    int integer = (int)integer2;
     system("cls");
+    
+    float num2 = num;
+    int sign = (num < 0) ? 1 : 0;
+    num = fabs(num);
 
-    printf("Liczba float %lf w systemie dwojkowym wynosi: ", num);
+    int exponent = 0;
+    float fraction = frexpf(num, &exponent);
+    fraction *= 2;
+    exponent += 126;
 
-    for (int i = 31; i >= 0; i--) {
-        if (integer >> i) printf("%d", (integer >> i) & 1); 
+    printf("Liczba float %f w formacie IEEE 754: ", num2);
+    printf("%d ", sign);
+
+    for (int i = 7; i >= 0; i--) {
+        printf("%d", (exponent >> i) & 1);
     }
-    if(integer == 0){
-        printf("0");
-    }
+    printf(" ");
 
-    printf(".");
-
-    int counter = 0;
-    double power = 0.5f;
-    while (fractional > 0 && counter < 23) { 
-        if (fractional >= power) {
+    fraction -= 1.0f;
+    for (int i = 0; i < 23; i++) {
+        fraction *= 2;
+        if (fraction >= 1.0f) {
             printf("1");
-            fractional -= power;
-
+            fraction -= 1.0f;
         } else {
             printf("0");
         }
-        power /= 2;
-        counter++;
-    }
-
-    if (fractional == 0) {
-        printf("0");
     }
     getch();
 }
@@ -200,44 +195,37 @@ void doubleToBinary() {
         k = scanf("%lf", &num);
         while ((getchar()) != '\n');    
     } while (k == 0);
-
-    double integer2;
-    double fractional;
-    fractional = modf(num, &integer2);
-    int integer = (int)integer2;
     system("cls");
 
-    printf("Liczba double %lf w systemie dwojkowym wynosi: ", num);
+    double num2 = num;
+    int sign = (num < 0) ? 1 : 0;
+    num = fabs(num);
 
-    for (int i = 31; i >= 0; i--) {
-        if (integer >> i) printf("%d", (integer >> i) & 1); 
+    int exponent = 0;
+    double fraction = frexp(num, &exponent);
+    fraction *= 2;
+    exponent += 1022;
+
+    printf("Liczba double %lf w formacie IEEE 754: ", num2);
+    printf("%d ", sign);
+
+    for (int i = 10; i >= 0; i--) {
+        printf("%d", (exponent >> i) & 1);
     }
-    if(integer == 0){
-        printf("0");
-    }
+    printf(" ");
 
-    printf(".");
-
-    int counter = 0;
-    double power = 0.5;
-    while (fractional > 0 && counter < 32) { 
-        if (fractional >= power) {
+    fraction -= 1.0;
+    for (int i = 0; i < 52; i++) {
+        fraction *= 2;
+        if (fraction >= 1.0) {
             printf("1");
-            fractional -= power;
-
+            fraction -= 1.0;
         } else {
             printf("0");
         }
-        power /= 2;
-        counter++;
-    }
-
-    if (fractional == 0) {
-        printf("0");
     }
     getch();
 }
-
 
 void binarna(){
     char ch;
